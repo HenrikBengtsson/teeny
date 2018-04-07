@@ -1,0 +1,22 @@
+%\VignetteIndexEntry{Hello World: An Example Vignette}
+%\VignetteAuthor{Henrik Bengtsson}
+%\VignetteKeyword{R}
+%\VignetteKeyword{package}
+%\VignetteEngine{utils::Sweave}
+
+\documentclass{article}
+
+\title{Hello World: An Example Vignette}
+\author{Henrik Bengtsson}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+This document was generated from a Sweave document that was compiled
+by R into a LaTeX document which in turn was compiled into a PDF.
+
+\end{document}
+
+
