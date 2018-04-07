@@ -1,6 +1,6 @@
 [![Travis CI Build Status](https://travis-ci.org/HenrikBengtsson/teeny.svg?branch=vignettes/Sweave)](https://travis-ci.org/HenrikBengtsson/teeny/branches)
 [![AppVeyor CI Build Status](https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/teeny?branch=vignettes/Sweave&svg=true)](https://ci.appveyor.com/project/HenrikBengtsson/teeny)
-
+[![codecov](https://codecov.io/gh/HenrikBengtsson/teeny/branch/vignettes/Sweave/graph/badge.svg)](https://codecov.io/gh/HenrikBengtsson/teeny/branches)
 
 # R package: teeny - A Minimal, Valid, Complete R Package
 
