@@ -5,9 +5,8 @@
 # R package: teeny - A Minimal, Valid, Complete R Package
 
 
-## Availble Git branches
+## Branches
 
 * [master](https://github.com/HenrikBengtsson/teeny): The minimal baseline package
 * [tests](https://github.com/HenrikBengtsson/teeny/tree/tests): Minimal package with package tests
-
-
+* [vignettes/Sweave](https://github.com/HenrikBengtsson/teeny/tree/vignettes/Sweave): Minimal package with an Sweave-based vignette (requires LaTeX)
