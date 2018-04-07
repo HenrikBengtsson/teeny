@@ -7,7 +7,6 @@ sudo: false
 cache: packages
 warnings_are_errors: false
 r_check_args: --as-cran
-latex: false
 
 matrix:
   include:
@@ -27,7 +26,7 @@ matrix:
       r_packages:
         - covr
       after_success:
-        - Rscript -e "covr::codecov(quiet=FALSE)"
+        - Rscript -e "covr::codecov(type='all',quiet=FALSE)"
       env: NB='w/ covr' # just a label
 
 notifications:
