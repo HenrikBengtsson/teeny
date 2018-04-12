@@ -11,3 +11,8 @@
 * [master](https://github.com/HenrikBengtsson/teeny): The minimal baseline package
 * [tests](https://github.com/HenrikBengtsson/teeny/tree/tests): Minimal package with package tests
 * [vignettes/Sweave](https://github.com/HenrikBengtsson/teeny/tree/vignettes/Sweave): Minimal package with an Sweave-based vignette (requires LaTeX)
+* [debugging/debugme](https://github.com/HenrikBengtsson/teeny/tree/debugging/debugme): Minimal package with near-zero overhead, string-based `"!DEBUG ..."` declarations based on the **[debugme]** package.
+
+
+[debugme]: https://cran.r-project.org/package=debugme
+
