@@ -29,6 +29,7 @@ cache:
 
 build_script:
   - echo Current directory=%CD%
+  - travis-tool.sh install_r R.methodsS3 R.oo
 
 test_script:
   - travis-tool.sh run_tests
