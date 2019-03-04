@@ -1,2 +1,2 @@
-hello <- function() message("Hello world!")
+hello <- function() "Hello world!" %>% message
 
