@@ -9,7 +9,7 @@ res <- tryCatch({
   sloppy_and(c(TRUE, TRUE), TRUE)
 }, error = function(e) e)
 print(res)
-stopifnot(inherits(res, "error") || !do_validate)
+stopifnot(getRversion() < "3.6.0" || inherits(res, "error"))
 
 ## This will give an error if
 ##  _R_CHECK_LENGTH_1_LOGIC2_=package:_R_CHECK_PACKAGE_NAME_,abort,verbose
@@ -17,4 +17,4 @@ res <- tryCatch({
   sloppy_and(c(TRUE, FALSE), TRUE)
 }, error = function(e) e)
 print(res)
-stopifnot(inherits(res, "error") || !do_validate)
+stopifnot(getRversion() < "3.6.0" || inherits(res, "error"))
