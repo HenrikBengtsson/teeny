@@ -15,6 +15,9 @@ matrix:
     - os: linux
       r: release
     - os: linux
+      r: release
+      env: _R_CHECK_LENGTH_1_LOGIC2_=true
+    - os: linux
       r: devel
     - os: osx
       r: oldrel
