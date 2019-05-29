@@ -15,6 +15,10 @@ matrix:
     - os: linux
       r: release
     - os: linux
+      r: release
+      env:
+        - R_FUTURE_FORK_ENABLE=false
+    - os: linux
       r: devel
     - os: osx
       r: oldrel

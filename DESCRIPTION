@@ -6,4 +6,7 @@ Authors@R: c(
    person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
           email = "henrikb@braju.com"))
 License: GPL (>= 3)
-RoxygenNote: 6.0.1
+Imports:
+    future,
+    xml2
+RoxygenNote: 6.1.1
