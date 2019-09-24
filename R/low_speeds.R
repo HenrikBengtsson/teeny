@@ -5,11 +5,15 @@ low_speeds <- function(limit) {
   subset(datasets::cars, speed <= limit)
 }
 
-## OK, if NAMESPACE has importFrom(utils, globalVariables)
-globalVariables("speed")
+## GOOD
+utils::globalVariables("speed")
 
 ## OK
-## utils::globalVariables("speed")
+## But, ideally, we should have the following NAMESPACE declaration:
+##   importFrom(utils, globalVariables)
+## Surprisingly, 'R CMD check' does not complain about 'globalVariables'
+## being unknown, even though we normally need to declare all imports.
+## globalVariables("speed")
 
 ## NOT OK - argument must be a character string
 ## utils::globalVariables(speed)
