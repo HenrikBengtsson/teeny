@@ -12,10 +12,13 @@
 * [tests](https://github.com/HenrikBengtsson/teeny/tree/tests): Minimal package with package tests
 * [vignettes/Sweave](https://github.com/HenrikBengtsson/teeny/tree/vignettes/Sweave): Minimal package with an Sweave-based vignette (requires LaTeX)
 * [debugging/debugme](https://github.com/HenrikBengtsson/teeny/tree/debugging/debugme): Minimal package with near-zero overhead, string-based `"!DEBUG ..."` declarations based on the **[debugme]** package.
+* [future/doFuture](https://github.com/HenrikBengtsson/teeny/tree/future/doFuture): Minimal package that uses **[doFuture]** as a parallel backend with **[foreach]**.  It illustrates how to handle `R CMD check` warnings on false-positive globals.
 * [magrittr](https://github.com/HenrikBengtsson/teeny/tree/magrittr): Minimal package that uses the **[magrittr]** pipe operator `%>%`.
 * [roxygen2/R.oo](https://github.com/HenrikBengtsson/teeny/tree/roxygen2/R.oo): Minimal package that uses **[roxygen2]** to document methods created by **[R.methodsS3]** and **[R.oo]**.
 
 [debugme]: https://cran.r-project.org/package=debugme
+[doFuture]: https://cran.r-project.org/package=doFuture
+[foreach]: https://cran.r-project.org/package=foreach
 [magrittr]: https://cran.r-project.org/package=magrittr
 [roxygen2]: https://cran.r-project.org/package=roxygen2
 [R.methodsS3]: https://cran.r-project.org/package=R.methodsS3
