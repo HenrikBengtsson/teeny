@@ -1,1 +1,2 @@
-export(hello)
+importFrom(utils, globalVariables)
+export(low_speeds)
