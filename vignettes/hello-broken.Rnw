@@ -1,0 +1,32 @@
+%\VignetteIndexEntry{Hello World: An Example of a Broken Vignette}
+%\VignetteAuthor{Henrik Bengtsson}
+%\VignetteKeyword{R}
+%\VignetteKeyword{package}
+%\VignetteEngine{utils::Sweave}
+
+\documentclass{article}
+
+\title{Hello World: An Example Vignette}
+\author{Henrik Bengtsson}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+This document was generated from a Sweave document that was compiled
+by R into a LaTeX document which in turn was compiled into a PDF.
+
+This is an example of an R code chunk:
+<<>>=
+sum(1:100)
+log(2)
+@
+
+% Force 'R CMD build' to fail building vignette + add random extra file
+<<>>=
+unlink("hello-broken.tex")
+cat("boom", file="hello-broken.log")
+@
+
+\end{document}
