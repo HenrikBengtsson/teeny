@@ -17,6 +17,10 @@
 This document was generated from a Sweave document that was compiled
 by R into a LaTeX document which in turn was compiled into a PDF.
 
+This is an example of an R code chunk:
+<<>>=
+sum(1:100)
+log(2)
+@
+
 \end{document}
-
-
