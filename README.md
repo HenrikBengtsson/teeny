@@ -12,6 +12,7 @@
 * [globalVariables](https://github.com/HenrikBengtsson/teeny/tree/globalVariables): Minimal package showing how and not how to use `utils::globalVariables()`
 * [tests](https://github.com/HenrikBengtsson/teeny/tree/tests): Minimal package with package tests
 * [vignettes/Sweave](https://github.com/HenrikBengtsson/teeny/tree/vignettes/Sweave): Minimal package with an Sweave-based vignette (requires LaTeX)
+* [vignettes/Sweave-broken](https://github.com/HenrikBengtsson/teeny/tree/vignettes/Sweave-broken): Minimal package with an Sweave-based vignette causing `R CMD build` to produce `* creating vignettes ... ERROR`.
 * [debugging/debugme](https://github.com/HenrikBengtsson/teeny/tree/debugging/debugme): Minimal package with near-zero overhead, string-based `"!DEBUG ..."` declarations based on the **[debugme]** package.
 * [future/doFuture](https://github.com/HenrikBengtsson/teeny/tree/future/doFuture): Minimal package that uses **[doFuture]** as a parallel backend with **[foreach]**.  It illustrates how to handle `R CMD check` warnings on false-positive globals.
 * [magrittr](https://github.com/HenrikBengtsson/teeny/tree/magrittr): Minimal package that uses the **[magrittr]** pipe operator `%>%`.
