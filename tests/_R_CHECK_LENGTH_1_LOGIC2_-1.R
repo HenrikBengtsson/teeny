@@ -10,7 +10,7 @@ res <- tryCatch({
 }, error = function(e) e)
 print(res)
 stopifnot(getRversion() < "3.6.0" || inherits(res, "error") ||
-          value == "package:_R_CHECK_PACKAGE_NAME_,abort,verbose")
+          is.element(value, c("", "false", "warn")))
 
 ## This will _not_ give an error if
 ##  _R_CHECK_LENGTH_1_LOGIC2_=package:_R_CHECK_PACKAGE_NAME_,abort,verbose
@@ -19,4 +19,4 @@ res <- tryCatch({
 }, error = function(e) e)
 print(res)
 stopifnot(getRversion() < "3.6.0" || inherits(res, "error") ||
-          value == "package:_R_CHECK_PACKAGE_NAME_,abort,verbose")
+          is.element(value, c("", "false", "warn")))
