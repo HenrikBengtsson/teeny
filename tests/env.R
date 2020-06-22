@@ -2,6 +2,10 @@ env <- Sys.getenv()
 env <- env[grepl("^R_", names(env))]
 str(as.list(env))
 
+env <- Sys.getenv()
+env <- env[grepl("^_R_", names(env))]
+str(as.list(env))
+
 print(.libPaths())
 
 if (.Platform$OS.type == "unix") {
