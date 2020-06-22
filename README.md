@@ -1,6 +1,12 @@
+<!-- badges: start -->
+[![R build status](https://github.com/HenrikBengtsson/teeny/workflows/R-CMD-check/badge.svg)](https://github.com/HenrikBengtsson/teeny/actions)
+
 [![Travis CI Build Status](https://travis-ci.org/HenrikBengtsson/teeny.svg?branch=master)](https://travis-ci.org/HenrikBengtsson/teeny/branches)
+
 [![AppVeyor CI Build Status](https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/teeny?branch=master&svg=true)](https://ci.appveyor.com/project/HenrikBengtsson/teeny)
+
 [![codecov](https://codecov.io/gh/HenrikBengtsson/teeny/branch/master/graph/badge.svg)](https://codecov.io/gh/HenrikBengtsson/teeny/branches)
+<!-- badges: end -->
 
 
 # R package: teeny - A Minimal, Valid, Complete R Package
