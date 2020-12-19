@@ -5,5 +5,7 @@ Description: A minimal, valid, complete R package that can be used as a baseline
 Authors@R: c(
    person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
           email = "henrikb@braju.com"))
+Imports:
+    tools
 License: GPL (>= 3)
 RoxygenNote: 6.0.1

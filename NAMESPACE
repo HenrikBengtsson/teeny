@@ -1,1 +1,2 @@
+if (getRversion() >= 4) importFrom(tools,R_user_dir)
 export(hello)
