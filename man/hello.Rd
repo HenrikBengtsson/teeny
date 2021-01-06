@@ -14,5 +14,7 @@ hello()
 \value{Returns nothing.}
 
 \examples{
+\dontshow{if (requireNamespace("base", quietly=TRUE)) \{}
 hello()
+\dontshow{\}}
 }
