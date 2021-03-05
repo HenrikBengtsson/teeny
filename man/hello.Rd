@@ -15,4 +15,7 @@ hello()
 
 \examples{
 hello()
+
+## This will cause pkgdown::build_reference() to fail
+globalCallingHandlers(NULL)
 }
