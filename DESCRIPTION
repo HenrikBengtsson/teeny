@@ -6,6 +6,6 @@ Authors@R: c(
    person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
           email = "henrikb@braju.com"))
 Suggests:
-   testthat,
-   parallelly
+   parallelly,
+   tcltk
 License: GPL (>= 3)
