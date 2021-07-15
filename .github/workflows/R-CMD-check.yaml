@@ -63,6 +63,9 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
+        if: runner.os == 'macOS'
+        run: |
+          brew cask install xquartz
 
       - name: Install dependencies
         run: |
