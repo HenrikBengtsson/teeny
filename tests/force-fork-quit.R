@@ -11,7 +11,7 @@ if (exists("mcparallel", mode="function", envir=getNamespace("parallel"))) {
   stopifnot(inherits(res, "error"))
 }
 
-message("Main PID: ", pid)
+message("Main PID (again): ", pid)
 
 ## Cleanup
 rm(pid)
