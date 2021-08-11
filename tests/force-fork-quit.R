@@ -1,7 +1,7 @@
 library(parallel)
 
 pid <- Sys.getpid()
-message("Main PID: ", pid)
+message("pid: ", pid)
 
 if (exists("mcparallel", mode="function", envir=getNamespace("parallel"))) {
   cl <- makeCluster(1L, type = "FORK")
@@ -11,7 +11,9 @@ if (exists("mcparallel", mode="function", envir=getNamespace("parallel"))) {
   stopifnot(inherits(res, "error"))
 }
 
-message("Main PID (again): ", pid)
+message("Timestamp: ", format(Sys.time(), "%Y-%m-%d %H:%M:%OS6"))
+message("Sys.getpid(): ", Sys.getpid())
+message("pid: ", pid)
 
 ## Cleanup
 rm(pid)
