@@ -17,4 +17,3 @@ message("pid: ", pid)
 
 ## Cleanup
 rm(pid)
-
