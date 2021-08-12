@@ -13,6 +13,7 @@ if (exists("mcparallel", mode="function", envir=getNamespace("parallel"))) {
 
 message("Timestamp: ", format(Sys.time(), "%Y-%m-%d %H:%M:%OS6"))
 message("Sys.getpid(): ", Sys.getpid())
+message("parallel:::isChild()=", parallel:::isChild())
 message("pid: ", pid)
 
 ## Cleanup
