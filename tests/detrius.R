@@ -1,41 +1,38 @@
-message("Temporary files in before:")
 tmp_root <- dirname(tempdir())
-tmp_before <- dir(tmp_root, full.names = TRUE)
-print(tmp_before)
+tmp_before <- dir(tmp_root, full.names = FALSE)
+
+main <- data.frame(name = "main", pid = Sys.getpid(), tempdir = basename(tempdir()))
 
 cl <- parallel::makeCluster(1L)
 
 res <- parallel::clusterEvalQ(cl, {
   cl <- parallel::makeCluster(1L)
   on.exit(parallel::stopCluster(cl))
-  c(
-    pid_worker = Sys.getpid(),
-    pid_child = parallel::clusterEvalQ(cl, Sys.getpid())
-  )
-})
 
-pids <- c(pid_main = Sys.getpid(), unlist(res))
-print(pids)
+  this <- data.frame(name = "child", pid = Sys.getpid(), tempdir = basename(tempdir()))
 
-pids_hex <- sapply(pids, FUN = sprintf, fmt = "%x")
-print(pids_hex)
+  child <- parallel::clusterEvalQ(cl, {
+    data.frame(name = "worker", pid = Sys.getpid(), tempdir = basename(tempdir()))
+  })[[1]]
+
+  rbind(this, child)
+})[[1]]
 
 parallel::stopCluster(cl)
 
-message("Temporary files after:")
-tmp_after <- dir(tmp_root, full.names = TRUE)
-print(tmp_after)
+res <- rbind(main, res)
 
 message("Added temporary files and folders:")
+tmp_after <- dir(tmp_root, full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
 
 message("Detrious temporary files:")
-detrius <- grep("^Rscript", basename(tmp_diff), value = TRUE)
-print(detrius)
-for (name in names(pids)) {
-  match <- grep(sprintf("^Rscript%x", pids[name]), detrius, value = TRUE)
-  if (length(match) > 0) {
-    message(sprintf("%s left detrius temporary file %s", sQuote(name), paste(match, collapse = ", ")))
-  }
+res$pid_hex <- sprintf("%x", res$pid)
+res$detrius <- NA_character_
+for (kk in 1:nrow(res)) {
+  pattern <- sprintf("^Rscript%s", res$pid_hex[kk])
+  match <- grep(pattern, basename(tmp_diff), value = TRUE)
+  if (length(match) > 0) res$detrius[kk] <- match
 }
+print(res)
