@@ -1,7 +1,6 @@
 tmp_root <- dirname(tempdir())
 tmp_before <- dir(tmp_root, full.names = FALSE)
-
-main <- data.frame(name = "main", pid = Sys.getpid(), tempdir = basename(tempdir()))
+parent <- data.frame(name = "parent", pid = Sys.getpid(), tempdir = basename(tempdir()))
 
 cl <- parallel::makeCluster(1L)
 
@@ -12,7 +11,7 @@ res <- parallel::clusterEvalQ(cl, {
   this <- data.frame(name = "child", pid = Sys.getpid(), tempdir = basename(tempdir()))
 
   child <- parallel::clusterEvalQ(cl, {
-    data.frame(name = "worker", pid = Sys.getpid(), tempdir = basename(tempdir()))
+    data.frame(name = "grandchild", pid = Sys.getpid(), tempdir = basename(tempdir()))
   })[[1]]
 
   rbind(this, child)
@@ -20,7 +19,7 @@ res <- parallel::clusterEvalQ(cl, {
 
 parallel::stopCluster(cl)
 
-res <- rbind(main, res)
+res <- rbind(parent, res)
 
 message("Added temporary files and folders:")
 tmp_after <- dir(tmp_root, full.names = FALSE)
