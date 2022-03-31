@@ -2,22 +2,26 @@ tmp_root <- dirname(tempdir())
 tmp_before <- dir(tmp_root, full.names = FALSE)
 parent <- data.frame(name = "parent", pid = Sys.getpid(), tempdir = basename(tempdir()))
 
-cl <- parallel::makeCluster(1L)
+cl <- parallel::makeCluster(1L, outfile = "")
 
 res <- parallel::clusterEvalQ(cl, {
-  cl <- parallel::makeCluster(1L)
-  on.exit(parallel::stopCluster(cl))
+  cl <- parallel::makeCluster(1L, outfile = "")
+  on.exit({
+    parallel::stopCluster(cl)
+    Sys.sleep(as.numeric(Sys.getenv("SLEEP_GRANDCHILD", "0")))
+  })
 
-  this <- data.frame(name = "child", pid = Sys.getpid(), tempdir = basename(tempdir()))
+  child <- data.frame(name = "child", pid = Sys.getpid(), tempdir = basename(tempdir()))
 
-  child <- parallel::clusterEvalQ(cl, {
+  grandchild <- parallel::clusterEvalQ(cl, {
     data.frame(name = "grandchild", pid = Sys.getpid(), tempdir = basename(tempdir()))
   })[[1]]
 
-  rbind(this, child)
+  rbind(child, grandchild)
 })[[1]]
 
 parallel::stopCluster(cl)
+Sys.sleep(as.numeric(Sys.getenv("SLEEP_CHILD", "0")))
 
 res <- rbind(parent, res)
 
