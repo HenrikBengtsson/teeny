@@ -2,6 +2,17 @@ tmp_root <- dirname(tempdir())
 tmp_before <- dir(tmp_root, full.names = FALSE)
 parent <- data.frame(name = "parent", pid = Sys.getpid(), tempdir = basename(tempdir()))
 
+## WORKAROUND: To avoid `R CMD check --as-cran` on MS Windows from triggering:
+##
+## * checking for detritus in the temp directory ... NOTE
+##   Found the following files/directories:
+##    'Rscript171866c62e'
+##
+## we can set cluster nodes to use a temporary folder *inside* the parent
+## temporary folder. This will hide the above files from 'R CMD check'.
+if (.Platform$OS.type == "windows" && isTRUE(Sys.getenv("TRICK_TMPDIR"))) {
+  Sys.setenv(TMPDIR = tempdir())
+}
 cl <- parallel::makeCluster(1L)
 
 res <- parallel::clusterEvalQ(cl, {
