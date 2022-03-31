@@ -10,7 +10,7 @@ parent <- data.frame(name = "parent", pid = Sys.getpid(), tempdir = basename(tem
 ##
 ## we can set cluster nodes to use a temporary folder *inside* the parent
 ## temporary folder. This will hide the above files from 'R CMD check'.
-if (.Platform$OS.type == "windows" && isTRUE(Sys.getenv("TRICK_TMPDIR"))) {
+if (.Platform$OS.type == "windows" && isTRUE(as.logical(Sys.getenv("TRICK_TMPDIR")))) {
   Sys.setenv(TMPDIR = tempdir())
 }
 cl <- parallel::makeCluster(1L)
