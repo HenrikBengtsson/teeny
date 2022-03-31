@@ -2,10 +2,10 @@ tmp_root <- dirname(tempdir())
 tmp_before <- dir(tmp_root, full.names = FALSE)
 parent <- data.frame(name = "parent", pid = Sys.getpid(), tempdir = basename(tempdir()))
 
-cl <- parallel::makeCluster(1L, outfile = "")
+cl <- parallel::makeCluster(1L)
 
 res <- parallel::clusterEvalQ(cl, {
-  cl <- parallel::makeCluster(1L, outfile = "")
+  cl <- parallel::makeCluster(1L)
   on.exit({
     parallel::stopCluster(cl)
     Sys.sleep(as.numeric(Sys.getenv("SLEEP_GRANDCHILD", "0")))
