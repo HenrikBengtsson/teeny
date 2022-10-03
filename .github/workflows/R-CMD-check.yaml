@@ -37,11 +37,8 @@ jobs:
       _R_CHECK_LENGTH_1_LOGIC2_: true
       _R_CHECK_MATRIX_DATA_: true
       _R_CHECK_SUGGESTS_ONLY_: true
-#      _R_CHECK_THINGS_IN_TEMP_DIR_: true
-      ## Needed for R to find Ghostscript on MS Windows
-      R_GSCMD: 'C:/Program Files/gs/gs9.56.1/bin/gswin64.exe'
       ## Package specific
-      R_PARALLEL_STOPCLUSTER: ${{ matrix.config.label }}
+      R_SKIP_STOPCLUSTER: ${{ matrix.config.label }}
 
     steps:
       - uses: actions/checkout@v2
@@ -118,7 +115,9 @@ jobs:
         shell: Rscript {0}
 
       - name: Check
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", if (.Platform$OS.type == "windows" && getRversion() >= "4.2.0") "--no-multiarch"), error_on = "note", check_dir = "check")
+        run: |
+          if (.Platform$OS.type == "windows") Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.56.1/bin/gswin64.exe")
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", if (.Platform$OS.type == "windows" && getRversion() >= "4.2.0") "--no-multiarch"), error_on = "note", check_dir = "check")
         shell: Rscript {0}
 
       - name: Upload check results
