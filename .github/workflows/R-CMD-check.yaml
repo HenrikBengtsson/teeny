@@ -16,12 +16,15 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'devel'  }
-          - {os: windows-latest, r: 'release'  }
-          - {os: macOS-latest,   r: 'devel'  }
-          - {os: macOS-latest,   r: 'release'  }
-          - {os: ubuntu-20.04,   r: 'devel'    }
-          - {os: ubuntu-20.04,   r: 'release'  }
+          - {os: windows-latest, r: 'devel'                                     }
+          - {os: windows-latest, r: 'devel',  label: 'examples'                 }
+          - {os: windows-latest, r: 'devel',  label: 'tests'                    }
+          - {os: windows-latest, r: 'devel',  label: 'examples,tests,vignettes' }
+          - {os: windows-latest, r: 'release'                                   }
+          - {os: macOS-latest,   r: 'devel'                                     }
+          - {os: macOS-latest,   r: 'release'                                   }
+          - {os: ubuntu-20.04,   r: 'devel'                                     }
+          - {os: ubuntu-20.04,   r: 'release'                                   }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -34,6 +37,8 @@ jobs:
       _R_CHECK_MATRIX_DATA_: true
       _R_CHECK_SUGGESTS_ONLY_: true
       _R_CHECK_THINGS_IN_TEMP_DIR_: true
+      ## Package specific
+      R_PARALLEL_STOPCLUSTER: {{ matrix.config.label }}
 
     steps:
       - uses: actions/checkout@v2
@@ -95,7 +100,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Check
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", if (.Platform$OS.type == "windows" && getRversion() >= "4.2.0") "--no-multiarch"), error_on = "warning", check_dir = "check")
+        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", if (.Platform$OS.type == "windows" && getRversion() >= "4.2.0") "--no-multiarch"), error_on = "note", check_dir = "check")
         shell: Rscript {0}
 
       - name: Upload check results
