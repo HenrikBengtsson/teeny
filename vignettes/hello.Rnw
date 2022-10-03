@@ -1,0 +1,47 @@
+%\VignetteIndexEntry{Hello World: An Example Vignette}
+%\VignetteAuthor{Henrik Bengtsson}
+%\VignetteKeyword{R}
+%\VignetteKeyword{package}
+%\VignetteEngine{utils::Sweave}
+
+\documentclass{article}
+
+\title{Hello World: An Example Vignette}
+\author{Henrik Bengtsson}
+
+\begin{document}
+\maketitle
+
+\section{Detritus in the temporary directory}
+
+The code block:
+
+<<>>=
+## Create two parallel workers
+cl <- parallel::makePSOCKcluster(2L)
+
+## Say hello
+message("Hello world!")
+@
+
+causes \texttt{R CMD check --as-cran} to generate:
+
+\begin{verbatim}
+* checking for detritus in the temp directory ... NOTE
+Found the following files/directories:
+  'Rscript1058267d0c10' 'Rscriptbd4267d0c10'
+\end{verbatim}
+
+on R (>= 4.3.0) when running on MS Windows if we forget to stop the cluster at the end of the vignette, e.g.
+
+
+<<>>=
+## If we leave the following out, we will get an 'R CMD check' NOTE
+## on detritus in the temp directory, where the files have names of
+## format Rscript<hexcode>, when running on MS Windows (only)
+if (grepl("vignettes", Sys.getenv("R_PARALLEL_STOPCLUSTER"))) {
+  parallel::stopCluster(cl)
+}
+@
+
+\end{document}

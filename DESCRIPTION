@@ -8,3 +8,8 @@ Authors@R: c(
 License: GPL (>= 3)
 Imports:
     parallel
+Suggests:
+    utils
+VignetteBuilder:
+    utils
+    
