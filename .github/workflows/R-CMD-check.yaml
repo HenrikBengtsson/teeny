@@ -37,8 +37,6 @@ jobs:
       _R_CHECK_MATRIX_DATA_: true
       _R_CHECK_SUGGESTS_ONLY_: true
       _R_CHECK_THINGS_IN_TEMP_DIR_: true
-      ## Package specific
-      R_PARALLEL_STOPCLUSTER: {{ matrix.config.label }}
 
     steps:
       - uses: actions/checkout@v2
@@ -100,6 +98,8 @@ jobs:
         shell: Rscript {0}
 
       - name: Check
+        env:
+          R_PARALLEL_STOPCLUSTER: {{ matrix.config.label }}
         run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", if (.Platform$OS.type == "windows" && getRversion() >= "4.2.0") "--no-multiarch"), error_on = "note", check_dir = "check")
         shell: Rscript {0}
 
