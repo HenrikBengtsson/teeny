@@ -23,7 +23,7 @@ hello()
 ## If we leave the following out, we will get an 'R CMD check' NOTE
 ## on detritus in the temp directory, where the files have names of
 ## format Rscript<hexcode>, when running on MS Windows (only)
-if (as.logical(Sys.getenv("R_PARALLEL_STOPCLUSTER", "false"))) {
+if (grepl("examples", Sys.getenv("R_PARALLEL_STOPCLUSTER"))) {
   parallel::stopCluster(cl)
 }
 }
