@@ -16,15 +16,16 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'devel'                                     }
-          - {os: windows-latest, r: 'devel',  label: 'examples'                 }
-          - {os: windows-latest, r: 'devel',  label: 'tests'                    }
-          - {os: windows-latest, r: 'devel',  label: 'examples,tests,vignettes' }
-          - {os: windows-latest, r: 'release'                                   }
-          - {os: macOS-latest,   r: 'devel'                                     }
-          - {os: macOS-latest,   r: 'release'                                   }
-          - {os: ubuntu-20.04,   r: 'devel'                                     }
-          - {os: ubuntu-20.04,   r: 'release'                                   }
+          - {os: windows-latest, r: 'devel'                                    }
+          - {os: windows-latest, r: 'devel', label: 'examples'                 }
+          - {os: windows-latest, r: 'devel', label: 'tests'                    }
+          - {os: windows-latest, r: 'devel', label: 'vignettes'                }
+          - {os: windows-latest, r: 'devel', label: 'examples,tests,vignettes' }
+          - {os: windows-latest, r: 'release'                                  }
+          - {os: macOS-latest,   r: 'devel'                                    }
+          - {os: macOS-latest,   r: 'release'                                  }
+          - {os: ubuntu-20.04,   r: 'devel'                                    }
+          - {os: ubuntu-20.04,   r: 'release'                                  }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
