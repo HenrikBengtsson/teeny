@@ -38,6 +38,8 @@ jobs:
       _R_CHECK_MATRIX_DATA_: true
       _R_CHECK_SUGGESTS_ONLY_: true
 #      _R_CHECK_THINGS_IN_TEMP_DIR_: true
+      ## Needed for R to find Ghostscript on MS Windows
+      R_GSCMD: 'C:/Program Files/gs/gs9.56.1/bin/gswin64.exe'
       ## Package specific
       R_PARALLEL_STOPCLUSTER: ${{ matrix.config.label }}
 
