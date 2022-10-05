@@ -1,9 +1,9 @@
 Package: teeny
-Version: 0.1.0
+Version: 1.0
 Title: A Minimal, Valid, Complete R Package
 Description: A minimal, valid, complete R package that can be used as a baseline for testing and troubleshooting various components of R and R packages.
 Authors@R: c(
    person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
           email = "henrikb@braju.com"))
 License: GPL (>= 3)
-RoxygenNote: 6.0.1
+RoxygenNote: 7.2.1
