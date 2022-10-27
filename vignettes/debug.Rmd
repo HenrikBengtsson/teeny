@@ -1,0 +1,100 @@
+---
+title: "Library paths"
+author: Henrik Bengtsson
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette title}
+  %\VignetteAuthor{Henrik Bengtsson}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Tricks
+
+```{r}
+dump <- function(expr, envir = parent.frame(), file = Sys.getenv("R_CHECK_DUMP", "/tmp/dump.out"), append = TRUE) {
+  expr <- substitute(expr)
+  eval(expr, envir = envir)
+  utils::str(list(file = file, append = append))
+  cat(file = "/tmp/dump2.out", "ping\n")
+  sink(file, append = append)
+  on.exit(sink())
+  eval(expr, envir = envir)
+}
+
+dump("start", append = FALSE)
+```
+
+## Debug information
+
+Current time:
+
+```{r}
+dump({
+print(Sys.time())
+})
+```
+
+
+### All `_R_CHECK_nnn_` environment variables
+
+```{r}
+dump({
+envs <- Sys.getenv()
+envs <- envs[grepl("^_R_CHECK_", names(envs))]
+print(envs)
+})
+```
+
+
+### Package libraries
+
+```{r}
+dump({
+libs <- .libPaths()
+print(libs)
+
+for (lib in libs) {
+  cat(sprintf("Library path: %s\n", lib))
+  print(dir(path = lib, all.files = TRUE, full.names = TRUE))
+}
+})
+```
+
+### Installed packages
+
+```{r}
+pkgs <- utils::installed.packages()
+pkgs <- as.data.frame(pkgs)
+rownames(pkgs) <- NULL
+print(pkgs[, c("Package", "Version", "LibPath")])
+```
+
+```{r}
+dump({
+pkgs <- utils::installed.packages()
+pkgs <- as.data.frame(pkgs)
+rownames(pkgs) <- NULL
+print(pkgs[, c("Package", "Version", "LibPath")])
+})
+```
+
+
+### Session info
+
+```{r}
+dump({
+print(sessionInfo())
+})
+```
+
+
+
+### Testing missing packages
+
+```{r}
+dump({
+library(listenv)
+})
+```
+
