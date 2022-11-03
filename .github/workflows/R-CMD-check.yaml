@@ -24,10 +24,10 @@ jobs:
       ## R CMD check
       _R_CHECK_CRAN_INCOMING_: false
       _R_CHECK_SUGGESTS_ONLY_: true
-      _R_CHECK_DEPENDS_ONLY_EXAMPLES_=true
-      _R_CHECK_DEPENDS_ONLY_TESTS_=true
-      _R_CHECK_DEPENDS_ONLY_VIGNETTES_=true
-      _R_CHECK_VIGNETTES_SKIP_RUN_MAYBE_=true
+      _R_CHECK_DEPENDS_ONLY_EXAMPLES_: true
+      _R_CHECK_DEPENDS_ONLY_TESTS_: true
+      _R_CHECK_DEPENDS_ONLY_VIGNETTES_: true
+      _R_CHECK_VIGNETTES_SKIP_RUN_MAYBE_: true
 
     steps:
       - uses: actions/checkout@v3
