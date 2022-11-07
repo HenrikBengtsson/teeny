@@ -1,0 +1,80 @@
+%\VignetteIndexEntry{Library paths}
+%\VignetteAuthor{Henrik Bengtsson}
+%\VignetteKeyword{R}
+%\VignetteKeyword{package}
+%\VignetteEngine{utils::Sweave}
+
+\documentclass{article}
+
+\title{Library paths}
+\author{Henrik Bengtsson}
+
+\begin{document}
+\maketitle
+
+\section{Debug information}
+
+Current time:
+
+<<>>=
+print(Sys.time())
+@
+
+
+\subsection{All \texttt{\_R\_CHECK\_nnn\_} environment variables}
+
+<<>>=
+envs <- Sys.getenv()
+envs <- envs[grepl("^_R_CHECK_", names(envs))]
+print(envs)
+@
+
+
+\subsection{Package libraries}
+
+<<>>=
+libs <- .libPaths()
+print(libs)
+
+for (lib in libs) {
+  cat(sprintf("Library path: %s\n", lib))
+  print(dir(path = lib, all.files = TRUE, full.names = TRUE))
+}
+@
+
+
+\subsection{Installed packages}
+
+<<>>=
+pkgs <- utils::installed.packages()
+pkgs <- as.data.frame(pkgs)
+rownames(pkgs) <- NULL
+print(pkgs[, c("Package", "Version", "LibPath")])
+@
+
+<<>>=
+pkgs <- utils::installed.packages()
+pkgs <- as.data.frame(pkgs)
+rownames(pkgs) <- NULL
+print(pkgs[, c("Package", "Version", "LibPath")])
+@
+
+
+\subsection{Session info}
+
+<<>>=
+print(sessionInfo())
+@
+
+
+\subsection{Testing missing packages}
+
+This \emph{should} give an error if
+\texttt{\_R\_CHECK\_DEPENDS\_ONLY\_VIGNETTES\_} is true, but it
+doesn't.
+
+<<>>=
+library(listenv)
+@
+
+\end{document}

@@ -1,5 +1,5 @@
 Package: teeny
-Version: 1.0
+Version: 1.1
 Title: A Minimal, Valid, Complete R Package
 Description: A minimal, valid, complete R package that can be used as a baseline for testing and troubleshooting various components of R and R packages.
 Authors@R: c(
@@ -8,9 +8,6 @@ Authors@R: c(
 License: GPL (>= 3)
 Imports:
     utils
-Suggests:
-    rmarkdown,
-    knitr
 VignetteBuilder:
-    knitr
+    utils
 RoxygenNote: 7.2.1
