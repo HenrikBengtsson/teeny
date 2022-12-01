@@ -66,7 +66,7 @@ print(sessionInfo())
 
 ### Testing missing packages
 
-This _should_ give an error if _R_CHECK_DEPENDS_ONLY_VIGNETTES_=true,
+This _should_ give an error if _R_CHECK_SUGGESTS_ONLY_=true,
 but it doesn't.
 
 ```{r}
