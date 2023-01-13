@@ -1,9 +1,7 @@
 <!-- badges: start -->
-[![R build status](https://github.com/HenrikBengtsson/teeny/workflows/R-CMD-check/badge.svg)](https://github.com/HenrikBengtsson/teeny/actions)
-
 [![AppVeyor CI Build Status](https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/teeny?branch=master&svg=true)](https://ci.appveyor.com/project/HenrikBengtsson/teeny)
-
 [![codecov](https://codecov.io/gh/HenrikBengtsson/teeny/branch/master/graph/badge.svg)](https://codecov.io/gh/HenrikBengtsson/teeny/branches)
+[![R-CMD-check](https://github.com/HenrikBengtsson/teeny/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HenrikBengtsson/teeny/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 
