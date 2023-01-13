@@ -66,4 +66,4 @@ jobs:
           RCMDCHECK_ERROR_ON: note
         run: |
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"))
-        shell: firejail --net=none Rscript {0}
+        shell: firejail ${{ matrix.config.firejail }} Rscript {0}
