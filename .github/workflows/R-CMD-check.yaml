@@ -47,6 +47,10 @@ jobs:
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
 
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true
+
       - name: Check package with network disabled (Linux)
         if: runner.os == 'Linux'
         env:
@@ -55,7 +59,3 @@ jobs:
           sudo apt install -y firejail
           firejail --version
           firejail --net=none Rscript -e 'rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), check_dir = "check")'
-
-      - uses: r-lib/actions/check-r-package@v2
-        with:
-          upload-snapshots: true
