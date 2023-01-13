@@ -8,7 +8,7 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }} ${{ matrix.config.r-runner }}
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }}) ${{ matrix.config.firejail }}
 
     strategy:
       fail-fast: false
@@ -19,7 +19,7 @@ jobs:
           - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
           - {os: ubuntu-latest,  r: 'release' }
           - {os: ubuntu-latest,  r: 'oldrel-1'}
-          - {os: ubuntu-latest,  r: 'release', r-runner: 'firejail --net=none' }
+          - {os: ubuntu-latest,  r: 'release', firejail: '--net=none' }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -53,14 +53,14 @@ jobs:
         with:
           upload-snapshots: true
           
-      - name: Install firejail
-        if: runner.os == 'Linux' && ${{ matrix.config.r-runner }} != ""
+      - name: Install firejail (Linux)
+        if: runner.os == 'Linux' && ${{ matrix.config.firejail != '' }}
         run: |
           sudo apt install -y firejail
           firejail --version
 
       - name: Check package with network disabled (Linux)
-        if: runner.os == 'Linux' && ${{ matrix.config.r-runner }} != ""
+        if: runner.os == 'Linux' && ${{ matrix.config.firejail != '' }}
         env:
           _R_CHECK_CRAN_INCOMING_: false
           RCMDCHECK_ERROR_ON: note
