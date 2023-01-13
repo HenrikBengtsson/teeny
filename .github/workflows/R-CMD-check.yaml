@@ -50,12 +50,18 @@ jobs:
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
+          
+      - name: Install firejail
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt install -y firejail
+          firejail --version
 
       - name: Check package with network disabled (Linux)
         if: runner.os == 'Linux'
         env:
           _R_CHECK_CRAN_INCOMING_: false
+          RCMDCHECK_ERROR_ON: note
         run: |
-          sudo apt install -y firejail
-          firejail --version
-          firejail --net=none Rscript -e 'rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), check_dir = "check")'
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"))
+        shell: firejail --net=none Rscript {0}
