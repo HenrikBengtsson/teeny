@@ -49,18 +49,18 @@ jobs:
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
-        if: ${{ matrix.config.r-runner }} == ""
+        if: ${{ matrix.config.firejail == '' }}
         with:
           upload-snapshots: true
           
       - name: Install firejail (Linux)
-        if: runner.os == 'Linux' && ${{ matrix.config.firejail != '' }}
+        if: ${{ runner.os == 'Linux' && matrix.config.firejail != '' }}
         run: |
           sudo apt install -y firejail
           firejail --version
 
       - name: Check package with network disabled (Linux)
-        if: runner.os == 'Linux' && ${{ matrix.config.firejail != '' }}
+        if: ${{ runner.os == 'Linux' && matrix.config.firejail != '' }}
         env:
           _R_CHECK_CRAN_INCOMING_: false
           RCMDCHECK_ERROR_ON: note
