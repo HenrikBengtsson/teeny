@@ -43,12 +43,11 @@ jobs:
       - name: System info (Windows)
         if: runner.os == 'Windows'
         run: |
-          date /T
-          time /T
-          where R
-          where Rscript
-          where msys2
-
+          Write-Output "PATH=$PATH"
+          Get-Command R.exe
+          Get-Command Rscript.exe
+          Get-Command msys2.exe
+ 
       - name: Session info
         run: |
           options(width = 100)
