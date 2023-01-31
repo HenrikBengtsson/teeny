@@ -44,7 +44,7 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           date /T
-          time
+          time /T
           where R
           where Rscript
           where msys2
