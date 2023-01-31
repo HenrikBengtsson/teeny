@@ -40,6 +40,15 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
+      - name: System info (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          date /T
+          time
+          where R
+          where Rscript
+          where msys2
+
       - name: Session info
         run: |
           options(width = 100)
