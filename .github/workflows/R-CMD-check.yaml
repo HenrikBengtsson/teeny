@@ -43,10 +43,10 @@ jobs:
       - name: System info (Windows)
         if: runner.os == 'Windows'
         run: |
-          Write-Output "PATH=$PATH"
+          $Env:Path
           Get-Command R.exe
           Get-Command Rscript.exe
-          Get-Command msys2.exe
+#          Get-Command msys2.exe
  
       - name: Session info
         run: |
