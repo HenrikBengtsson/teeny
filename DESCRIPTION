@@ -5,4 +5,11 @@ Description: A minimal, valid, complete R package that can be used as a baseline
 Authors@R: c(
    person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
           email = "henrikb@braju.com"))
+Suggests:
+   quarto
+VignetteBuilder:
+   quarto
+Remotes:
+   quarto-dev/quarto-r#57
 License: GPL (>= 3)
+   
