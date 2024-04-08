@@ -5,7 +5,7 @@ mirai::daemons(0)
 print(mirai::daemons())
 
 message("Launch two workers")
-mirai::daemons(2)
+mirai::daemons(2, dispatcher = FALSE)
 print(mirai::daemons())
 
 message("Reset")
