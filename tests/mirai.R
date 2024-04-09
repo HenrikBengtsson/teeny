@@ -1,7 +1,7 @@
 library(mirai)
 
 message("Launch two workers")
-mirai::daemons(2, output = TRUE)
+mirai::daemons(2, url = local_url(), output = TRUE)
 print(mirai::daemons())
 
 message("Reset")
