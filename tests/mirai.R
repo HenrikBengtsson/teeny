@@ -5,6 +5,9 @@ mirai::daemons(2, output = TRUE)
 print(mirai::daemons())
 
 tmp_root <- dirname(tempdir())
+message("tmp_root", tmp_root)
+print(dir(tmp_root, recursive = TRUE))
+
 tmp_before <- dir(tmp_root, full.names = FALSE)
 
 main <- data.frame(name = "main", pid = Sys.getpid(), tempdir = basename(tempdir()))
@@ -23,6 +26,7 @@ message("Added temporary files and folders:")
 tmp_after <- dir(tmp_root, full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
+print(dir(tmp_root, recursive = TRUE))
 
 res <- rbind(main, workers)
 res$pid_hex <- sprintf("%x", res$pid)
@@ -45,6 +49,7 @@ message("Added temporary files and folders (+5s):")
 tmp_after <- dir(tmp_root, full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
+print(dir(tmp_root, recursive = TRUE))
 
 
 message("Reset")
@@ -56,6 +61,7 @@ message("Added temporary files and folders (+10s):")
 tmp_after <- dir(tmp_root, full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
+print(dir(tmp_root, recursive = TRUE))
 
 
 message("Reset")
@@ -67,3 +73,4 @@ message("Added temporary files and folders (+15s):")
 tmp_after <- dir(tmp_root, full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
+print(dir(tmp_root, recursive = TRUE))
