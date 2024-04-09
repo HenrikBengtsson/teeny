@@ -1,14 +1,18 @@
 library(mirai)
 
+tmp_root <- dirname(tempdir())
+message("tmp_root", tmp_root)
+tmp_before <- dir(tmp_root, full.names = FALSE)
+message("tmp_before:")
+print(tmp_before)
+message("all temp folders:")
+print(dir(tmp_root, recursive = TRUE))
+
 message("Launch two workers")
 mirai::daemons(2, output = TRUE)
 print(mirai::daemons())
 
-tmp_root <- dirname(tempdir())
-message("tmp_root", tmp_root)
 print(dir(tmp_root, recursive = TRUE))
-
-tmp_before <- dir(tmp_root, full.names = FALSE)
 
 main <- data.frame(name = "main", pid = Sys.getpid(), tempdir = basename(tempdir()))
 ms <- list()
