@@ -1,11 +1,13 @@
 library(mirai)
 
+tmp_before <- dir(dirname(tempdir()), full.names = FALSE)
+
 message("Launch two workers")
 mirai::daemons(2, output = TRUE)
 str(mirai::daemons())
 
 main <- data.frame(name = "main", pid = Sys.getpid(), tempdir = basename(tempdir()))
-ms <- lapply(1:2, FUN = function(idx) {
+ms <- lapply(1:2, FUN = function(kk) {
   mirai({
     Sys.sleep(1)
     data.frame(name = "worker", pid = Sys.getpid(), tempdir = basename(tempdir()))
