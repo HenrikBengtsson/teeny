@@ -45,7 +45,7 @@ print(res)
 
 
 message("Reset")
-mirai::daemons(0)
+mirai::daemons(NULL)
 print(mirai::daemons())
 Sys.sleep(5)
 
@@ -57,23 +57,11 @@ print(dir(tmp_root, all.files = TRUE, recursive = TRUE))
 
 
 message("Reset")
-mirai::daemons(NULL)
-print(mirai::daemons())
-Sys.sleep(5)
-
-message("Added temporary files and folders (+10s):")
-tmp_after <- dir(tmp_root, full.names = FALSE)
-tmp_diff <- setdiff(tmp_after, tmp_before)
-print(tmp_diff)
-print(dir(tmp_root, all.files = TRUE, recursive = TRUE))
-
-
-message("Reset")
 mirai::daemons(0)
 print(mirai::daemons())
 Sys.sleep(5)
 
-message("Added temporary files and folders (+15s):")
+message("Added temporary files and folders (+10s):")
 tmp_after <- dir(tmp_root, full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
