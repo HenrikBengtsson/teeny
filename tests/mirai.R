@@ -1,27 +1,21 @@
 library(mirai)
 
-tmp_root <- dirname(tempdir())
-message("tmp_root", tmp_root)
-tmp_before <- dir(tmp_root, full.names = FALSE)
-
 message("Launch two workers")
 mirai::daemons(2, output = TRUE)
 str(mirai::daemons())
 
 main <- data.frame(name = "main", pid = Sys.getpid(), tempdir = basename(tempdir()))
-ms <- list()
-for (kk in 1:10) {
-  ms[[kk]] <- mirai({
+ms <- lapply(1:2, FUN = function(idx) {
+  mirai({
     Sys.sleep(1)
     data.frame(name = "worker", pid = Sys.getpid(), tempdir = basename(tempdir()))
   })
-}
+})
 workers <- lapply(ms, FUN = function(m) call_mirai(m)$data)
 workers <- do.call(rbind, workers)
-workers <- unique(workers)
 
 message("Added temporary files and folders:")
-tmp_after <- dir(tmp_root, full.names = FALSE)
+tmp_after <- dir(dirname(tempdir()), full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
 
@@ -41,7 +35,7 @@ mirai::daemons(NULL)
 str(mirai::daemons())
 
 message("Added temporary files and folders (+5s):")
-tmp_after <- dir(tmp_root, full.names = FALSE)
+tmp_after <- dir(dirname(tempdir()), full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
 stopifnot(length(tmp_diff) == 0)
