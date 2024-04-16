@@ -3,16 +3,10 @@ library(mirai)
 tmp_root <- dirname(tempdir())
 message("tmp_root", tmp_root)
 tmp_before <- dir(tmp_root, full.names = FALSE)
-message("tmp_before:")
-print(tmp_before)
-message("all temp folders:")
-print(dir(tmp_root, all.files = TRUE, recursive = TRUE))
 
 message("Launch two workers")
 mirai::daemons(2, output = TRUE)
-print(mirai::daemons())
-
-print(dir(tmp_root, all.files = TRUE, recursive = TRUE))
+str(mirai::daemons())
 
 main <- data.frame(name = "main", pid = Sys.getpid(), tempdir = basename(tempdir()))
 ms <- list()
@@ -30,7 +24,6 @@ message("Added temporary files and folders:")
 tmp_after <- dir(tmp_root, full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
-print(dir(tmp_root, all.files = TRUE, recursive = TRUE))
 
 res <- rbind(main, workers)
 res$pid_hex <- sprintf("%x", res$pid)
@@ -43,26 +36,13 @@ for (kk in 1:nrow(res)) {
 message("Detritus information:")
 print(res)
 
-
 message("Reset")
 mirai::daemons(NULL)
-print(mirai::daemons())
-Sys.sleep(5)
+str(mirai::daemons())
 
 message("Added temporary files and folders (+5s):")
 tmp_after <- dir(tmp_root, full.names = FALSE)
 tmp_diff <- setdiff(tmp_after, tmp_before)
 print(tmp_diff)
-print(dir(tmp_root, all.files = TRUE, recursive = TRUE))
+stopifnot(length(tmp_diff) == 0)
 
-
-message("Reset")
-mirai::daemons(0)
-print(mirai::daemons())
-Sys.sleep(5)
-
-message("Added temporary files and folders (+10s):")
-tmp_after <- dir(tmp_root, full.names = FALSE)
-tmp_diff <- setdiff(tmp_after, tmp_before)
-print(tmp_diff)
-print(dir(tmp_root, all.files = TRUE, recursive = TRUE))
