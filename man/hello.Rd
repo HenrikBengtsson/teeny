@@ -1,5 +1,6 @@
 \name{hello}
 \alias{hello}
+\alias{hi}
 
 \title{Displays A Message}
 
