@@ -12,18 +12,19 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest,   r: 'devel'   , foo: 'false'}
+          - {os: ubuntu-latest,   r: 'devel'   , suggests_only: 'false' }
           - {os: ubuntu-latest,   r: 'release'               }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       FOO_A: ${{ matrix.config.foo }}
-      FOO_B: ${{ matrix.config.foo || 'default' }}
-      FOO_C: ${{ matrix.config.foo == 'false' && 'FALSE' || 'default' }}
+      FOO_B: ${{ matrix.config.foo || 'true' }}
+      FOO_C: ${{ matrix.config.foo == 'false' && 'FALSE' || 'true' }}
+      _R_CHECK_SUGGESTS_ONLY_: ${{ matrix.config.suggests_only || 'true' }}
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Env vars
         run: |
-          env | grep -E "^FOO_"
+          env | grep -E "^(FOO_|_R_)"
