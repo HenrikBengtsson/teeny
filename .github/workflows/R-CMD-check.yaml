@@ -20,11 +20,11 @@ jobs:
           - {os: macOS-latest,   r: 'devel'   }
           - {os: macOS-latest,   r: 'release' }
           - {os: macOS-latest,   r: 'oldrel'  }
-          - {os: ubuntu-20.04,   r: 'devel'   }
-          - {os: ubuntu-20.04,   r: 'release' }
-          - {os: ubuntu-20.04,   r: 'oldrel'  }
-          - {os: ubuntu-20.04,   r: 'oldrel-1'}
-          - {os: ubuntu-20.04,   r: '3.3'     }
+          - {os: ubuntu-latest,  r: 'devel'   }
+          - {os: ubuntu-latest,  r: 'release' }
+          - {os: ubuntu-latest,  r: 'oldrel'  }
+          - {os: ubuntu-latest,  r: 'oldrel-1'}
+          - {os: ubuntu-latest,  r: '3.6'     }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -38,7 +38,7 @@ jobs:
       _R_CHECK_SUGGESTS_ONLY_: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-r@master
         with:
@@ -55,7 +55,7 @@ jobs:
 
       - name: Cache R packages
         if: runner.os != 'Windows'
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
