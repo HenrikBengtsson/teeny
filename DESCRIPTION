@@ -6,3 +6,8 @@ Authors@R: c(
    person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
           email = "henrikb@braju.com"))
 License: GPL (>= 3)
+Suggests: 
+    testthat (>= 3.0.0),
+    parallelly
+Config/testthat/edition: 3
+Config/testthat/parallel: true
