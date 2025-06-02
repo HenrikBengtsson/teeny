@@ -23,4 +23,8 @@ sum(1:100)
 log(2)
 @
 
+<<>>=
+Sys.getenv("_R_CHECK_LIMIT_CORES_", NA_character_)
+@
+
 \end{document}
